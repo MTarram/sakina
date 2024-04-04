@@ -1,0 +1,39 @@
+.bg-body-tertiary {
+  background-image: url("../../../../assets/shade.png");
+  background-color: transparent !important;
+  height: 670px; /* Adjust height as needed */
+  width: 100%;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+li,
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  a {
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+
+    &.flag-link {
+      cursor: pointer;
+    }
+  }
+}
+
+.nav-link {
+  &.active {
+    color: white !important;
+    border-bottom: 2px solid white !important;
+  }
+}

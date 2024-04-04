@@ -1,0 +1,16 @@
+.contact-section {
+  background-image: url("../../../assets/home-bg.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: #fff;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    padding-top: 8rem;
+  }
+}
