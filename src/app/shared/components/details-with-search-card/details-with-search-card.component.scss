@@ -46,10 +46,32 @@
 
 ::ng-deep {
   .p-overlaypanel .p-overlaypanel-content {
+    ul {
+      padding-left: 0;
+    }
     .travellerForm {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
+      .submission {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        .submitBtn {
+          font-family: "Mukta", sans-serif;
+          background-color: #af8549;
+          color: white;
+          border-radius: 60px;
+          padding: 0.5rem 1rem;
+
+          &:hover {
+            filter: brightness(0.8);
+            cursor: pointer;
+          }
+        }
+      }
 
       .control {
         display: flex;
@@ -69,12 +91,11 @@
           }
         }
 
-
         p-inputnumber,
         .p-inputnumber {
-        .p-inputnumber-buttons-horizontal .p-inputnumber-input {
-          border: none;
-        }
+          .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+            border: none;
+          }
 
           span {
             input {

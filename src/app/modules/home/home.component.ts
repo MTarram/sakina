@@ -74,7 +74,7 @@ export class HomeComponent {
         },
       },
       {
-        title: 'Mutli City Journey',
+        title: 'Multi City Journey',
         cityFrom: {
           header: 'From',
           details: 'Cairo',

@@ -127,7 +127,15 @@
           placeholder="Select a Class"
         ></p-dropdown>
       </div>
-      <button type="submit" [disabled]="travellerForm.invalid">Apply</button>
+      <div class="submission">
+        <button
+          class="submitBtn"
+          type="submit"
+          [disabled]="travellerForm.invalid"
+        >
+          Apply
+        </button>
+      </div>
     </form>
   </ng-template>
 </p-overlayPanel>
