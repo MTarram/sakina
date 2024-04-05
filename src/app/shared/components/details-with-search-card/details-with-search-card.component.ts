@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DetailsWithSearchCardComponent implements OnInit {
   @Input() tab: any;
   travellerForm!: FormGroup;
+  classes: any[] | undefined;
 
   constructor(private fb: FormBuilder) {}
 
@@ -17,7 +18,14 @@ export class DetailsWithSearchCardComponent implements OnInit {
       adults: ['', Validators.required],
       children: ['', Validators.required],
       infants: ['', Validators.required],
+      class: ['', Validators.required],
     });
+
+    this.classes = [
+      { name: 'A', code: 'a' },
+      { name: 'B', code: 'b' },
+      { name: 'C', code: 'c' },
+    ];
   }
 
   onSubmit() {
