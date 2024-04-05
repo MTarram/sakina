@@ -62,7 +62,7 @@
   <div class="search">
     <img
       (click)="op.toggle($event)"
-      src="assets/arrow-down.svg"
+      src="assets/search.svg"
       alt="Arrow Down"
     />
   </div>
@@ -70,40 +70,56 @@
 
 <p-overlayPanel #travellersOp>
   <ng-template pTemplate="content">
-    <form class="travellerForm" [formGroup]="travellerForm" (ngSubmit)="onSubmit()">
-      <div class="content">
-        <h1>
+    <form
+      class="travellerForm"
+      [formGroup]="travellerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="control">
+        <div class="label">
           <span>Adults</span>
-          <span>12+</span>
-        </h1>
+          <small>12+</small>
+        </div>
         <p-inputNumber
-        formControlName="adults"
-        [showButtons]="true"
-        [step]="1"
-        [min]="0"
-        buttonLayout="horizontal"
-        incrementButtonIcon="pi pi-plus"
-        decrementButtonIcon="pi pi-minus"
-      ></p-inputNumber>
+          formControlName="adults"
+          [showButtons]="true"
+          [step]="1"
+          [min]="0"
+          buttonLayout="horizontal"
+          incrementButtonIcon="pi pi-plus"
+          decrementButtonIcon="pi pi-minus"
+        ></p-inputNumber>
       </div>
-      <p-inputNumber
-        formControlName="children"
-        [showButtons]="true"
-        [step]="1"
-        [min]="0"
-        buttonLayout="horizontal"
-        incrementButtonIcon="pi pi-plus"
-        decrementButtonIcon="pi pi-minus"
-      ></p-inputNumber>
-      <p-inputNumber
-        formControlName="infants"
-        [showButtons]="true"
-        [step]="1"
-        [min]="0"
-        buttonLayout="horizontal"
-        incrementButtonIcon="pi pi-plus"
-        decrementButtonIcon="pi pi-minus"
-      ></p-inputNumber>
+      <div class="control">
+        <div class="label">
+          <span>Children</span>
+          <small> 2-12</small>
+        </div>
+        <p-inputNumber
+          formControlName="children"
+          [showButtons]="true"
+          [step]="1"
+          [min]="0"
+          buttonLayout="horizontal"
+          incrementButtonIcon="pi pi-plus"
+          decrementButtonIcon="pi pi-minus"
+        ></p-inputNumber>
+      </div>
+      <div class="control">
+        <div class="label">
+          <span>Infants</span>
+          <small>2-</small>
+        </div>
+        <p-inputNumber
+          formControlName="infants"
+          [showButtons]="true"
+          [step]="1"
+          [min]="0"
+          buttonLayout="horizontal"
+          incrementButtonIcon="pi pi-plus"
+          decrementButtonIcon="pi pi-minus"
+        ></p-inputNumber>
+      </div>
 
       <button type="submit" [disabled]="travellerForm.invalid">Apply</button>
     </form>

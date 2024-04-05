@@ -50,10 +50,28 @@
       display: flex;
       flex-direction: column;
 
-      .content {
+      .control {
         display: flex;
         justify-content: space-between;
-        font-size: 12px;
+        gap: 4rem;
+        .label {
+          display: flex;
+          flex-direction: column;
+          font-family: "Mukta", sans-serif;
+          font-weight: 400;
+          span {
+            font-size: 14px;
+          }
+          small {
+            font-size: 12px;
+          }
+        }
+
+        p-inputnumber, .p-inputnumber {
+          span input {
+            max-width: 36px;
+          }
+        }
       }
     }
   }
