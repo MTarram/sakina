@@ -49,6 +49,7 @@
     .travellerForm {
       display: flex;
       flex-direction: column;
+      gap: 1rem;
 
       .control {
         display: flex;
@@ -64,12 +65,27 @@
           }
           small {
             font-size: 12px;
+            color: #898989;
           }
         }
 
-        p-inputnumber, .p-inputnumber {
-          span input {
-            max-width: 36px;
+
+        p-inputnumber,
+        .p-inputnumber {
+        .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+          border: none;
+        }
+
+          span {
+            input {
+              max-width: 36px;
+            }
+            button {
+              border-radius: 24px;
+              background: white;
+              color: black;
+              border-color: black;
+            }
           }
         }
       }
