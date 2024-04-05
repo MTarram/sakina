@@ -1,15 +1,8 @@
 .bg-body-tertiary {
-  background-image: url("../../../../assets/shade.png");
+  padding-top: 30px;
+  padding-bottom: 40px;
   background-color: transparent !important;
-  height: 670px; /* Adjust height as needed */
-  width: 100%;
-}
-
-.header-section {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 2rem;
-  padding-left: 2rem;
+  margin-left: 1rem;
 }
 
 .navbar-collapse {
@@ -24,16 +17,23 @@ li,
     font-weight: 500;
     font-size: 14px;
     color: white;
-
-    &.flag-link {
-      cursor: pointer;
-    }
   }
 }
 
 .nav-link {
+  font-family: "Nanum Myeongjo", serif;
+
   &.active {
     color: white !important;
     border-bottom: 2px solid white !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: rgba(0, 0, 0, 0.53);
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 21px;
   }
 }

@@ -1,0 +1,117 @@
+<div class="tabPanel">
+  <div class="cityFrom">
+    <small class="d-flex gap-2">
+      <span>{{ tab.cityFrom.header }}</span>
+      <img
+        (click)="op.toggle($event)"
+        src="assets/arrow-down.svg"
+        alt="Arrow Down"
+      />
+    </small>
+    <h3>{{ tab.cityFrom.details }}</h3>
+    <h6>{{ tab.cityFrom.subDetails }}</h6>
+  </div>
+  <div class="cityTo">
+    <small class="d-flex gap-2">
+      <span>{{ tab.cityTo.header }}</span>
+      <img
+        (click)="op.toggle($event)"
+        src="assets/arrow-down.svg"
+        alt="Arrow Down"
+      />
+    </small>
+    <h3>{{ tab.cityTo.details }}</h3>
+    <h6>{{ tab.cityTo.subDetails }}</h6>
+  </div>
+  <div class="dateFrom">
+    <small class="d-flex gap-2">
+      <span>{{ tab.dateFrom.header }}</span>
+      <img
+        (click)="op.toggle($event)"
+        src="assets/arrow-down.svg"
+        alt="Arrow Down"
+      />
+    </small>
+    <h3>{{ tab.dateFrom.details }}</h3>
+    <h6>{{ tab.dateFrom.subDetails }}</h6>
+  </div>
+  <div class="dateTo">
+    <small class="d-flex gap-2">
+      <span>{{ tab.dateTo.header }}</span>
+      <img
+        (click)="op.toggle($event)"
+        src="assets/arrow-down.svg"
+        alt="Arrow Down"
+      />
+    </small>
+    <h3>{{ tab.dateTo.details }}</h3>
+    <h6>{{ tab.dateTo.subDetails }}</h6>
+  </div>
+  <div class="travellers">
+    <small class="d-flex gap-2">
+      <span>{{ tab.travellers.header }}</span>
+      <img
+        (click)="travellersOp.toggle($event)"
+        src="assets/arrow-down.svg"
+        alt="Arrow Down"
+      />
+    </small>
+    <h3>{{ tab.travellers.details }}</h3>
+    <h6>{{ tab.travellers.subDetails }}</h6>
+  </div>
+  <div class="search">
+    <img
+      (click)="op.toggle($event)"
+      src="assets/arrow-down.svg"
+      alt="Arrow Down"
+    />
+  </div>
+</div>
+
+<p-overlayPanel #travellersOp>
+  <ng-template pTemplate="content">
+    <form class="travellerForm" [formGroup]="travellerForm" (ngSubmit)="onSubmit()">
+      <div class="content">
+        <h1>
+          <span>Adults</span>
+          <span>12+</span>
+        </h1>
+        <p-inputNumber
+        formControlName="adults"
+        [showButtons]="true"
+        [step]="1"
+        [min]="0"
+        buttonLayout="horizontal"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"
+      ></p-inputNumber>
+      </div>
+      <p-inputNumber
+        formControlName="children"
+        [showButtons]="true"
+        [step]="1"
+        [min]="0"
+        buttonLayout="horizontal"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"
+      ></p-inputNumber>
+      <p-inputNumber
+        formControlName="infants"
+        [showButtons]="true"
+        [step]="1"
+        [min]="0"
+        buttonLayout="horizontal"
+        incrementButtonIcon="pi pi-plus"
+        decrementButtonIcon="pi pi-minus"
+      ></p-inputNumber>
+
+      <button type="submit" [disabled]="travellerForm.invalid">Apply</button>
+    </form>
+  </ng-template>
+</p-overlayPanel>
+
+<p-overlayPanel #op>
+  <ng-template pTemplate="content">
+    <small>content here</small>
+  </ng-template>
+</p-overlayPanel>

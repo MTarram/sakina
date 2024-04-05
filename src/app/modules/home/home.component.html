@@ -1,6 +1,18 @@
 <section class="home-section">
   <div class="container content">
-    <img src="assets/stars.svg" alt="Stars">
-    <h1 class="mt-5">{{ "Luxury Unveiled...Effortless Escape" | uppercase }}</h1>
+    <img src="assets/stars.svg" alt="Stars" />
+    <h1 class="mt-5 content-title">
+      {{ "Luxury Unveiled... Effortless Escape" | uppercase }}
+    </h1>
+
+    <div class="journey-details">
+      <p-tabView>
+        <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
+          <app-details-with-search-card
+            [tab]="tab"
+          ></app-details-with-search-card>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
   </div>
 </section>

@@ -1,0 +1,60 @@
+.tabPanel {
+  display: flex;
+  font-family: "Mukta", sans-serif;
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    padding-inline: 2.5rem;
+    border-right: 1px solid #d8d8d8;
+    color: #1c1b1f;
+  }
+
+  & > *:last-child {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    padding: 1.8rem;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: #af8549;
+    border-right: none;
+    &:hover {
+      filter: brightness(0.7);
+    }
+  }
+
+  small {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+
+  h6 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+}
+
+::ng-deep {
+  .p-overlaypanel .p-overlaypanel-content {
+    .travellerForm {
+      display: flex;
+      flex-direction: column;
+
+      .content {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+      }
+    }
+  }
+}

@@ -1,16 +1,54 @@
-.home-section {
-  background-image: url("../../../assets/home-bg.png");
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  color: #fff;
+:host ::ng-deep {
+  .home-section {
+    background-image: url("../../../assets/home-bg.png");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    color: #fff;
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 60%;
-    padding-top: 8rem;
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 60%;
+      padding-top: 8rem;
+
+      .content-title {
+        font-family: "Nanum Myeongjo", serif;
+      }
+
+      .journey-details {
+        margin-top: 3rem;
+
+        .p-tabview-nav {
+          margin-bottom: 0 !important;
+          background-color: transparent;
+          padding-left: 0;
+          gap: 0.25rem;
+          border: none;
+
+          li .p-tabview-nav-link {
+            font-family: "Mukta", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+            background: #af8549;
+            text-decoration: none;
+          }
+
+          li.p-highlight .p-tabview-nav-link {
+            background: white;
+            color: black;
+            border: none;
+          }
+        }
+
+        .p-tabview .p-tabview-panels {
+          padding: 0;
+          border-top-right-radius: 6px;
+        }
+      }
+    }
   }
 }
