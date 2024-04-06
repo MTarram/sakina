@@ -144,14 +144,12 @@ export class DetailsWithSearchCardComponent implements OnInit {
       this.multiArray.forEach((trip, index) => {
         url += `&dep${index + 2}=${trip.cityFrom}&ret${index + 2}=${
           trip.cityTo
-        }&dtt${index + 2}=${trip.dateFrom}&cl1=${
+        }&dtt${index + 2}=${trip.dateFrom}&cl${index + 2}=${
           this.travellerForm?.value?.class?.code
-        }&triptype=${this.type}&adult=${
-          this.travellerForm?.value?.adults
-        }&child=${this.travellerForm?.value?.children}&infant=${
-          this.travellerForm?.value?.infants
-        }&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
+        }`;
       });
+      url += `&triptype=${this.type}&adult=${this.travellerForm?.value?.adults}&child=${this.travellerForm?.value?.children}&infant=${this.travellerForm?.value?.infants}&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
+
       this.valueChange.emit(url);
     }
   }

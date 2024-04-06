@@ -21,7 +21,7 @@ export class AirportsService {
     };
 
     const headers = new HttpHeaders({
-      Authorization: 'Bearer rGDX81Zfushgc6WnSAm1DB81yuj0',
+      Authorization: 'Bearer XAiST8ie1w3B4BcSCZap9hJwAa6e',
     });
 
     return this.http.get(this.baseUrl, { params, headers });
