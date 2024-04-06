@@ -84,10 +84,10 @@ export class HomeComponent {
     console.log(body);
 
     if (body.type === 1) {
-      window.location.href = `https://tunivision.amadeusonlinesuite.com/Flight/search?dep1=${body.countryFrom}&ret1=${body.countryTo}&dtt1=${body.dateFrom}&cl1=Y&triptype=${this.type}&adult=${body?.travellers?.adults}&child=${body?.travellers?.children}&infant=${body?.travellers?.infants}
+      window.location.href = `https://book.sakinatours.com/Flight/search?dep1=${body.countryFrom}&ret1=${body.countryTo}&dtt1=${body.dateFrom}&cl1=Y&triptype=${this.type}&adult=${body?.travellers?.adults}&child=${body?.travellers?.children}&infant=${body?.travellers?.infants}
         .code}&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
     } else if (body.type === 2) {
-      window.location.href = `https://tunivision.amadeusonlinesuite.com/Flight/search?dep1=${body.countryFrom}&ret1=${body.countryTo}&dtt1=${body.dateFrom}&dtt2=${body.dateTo}&cl1=Y&triptype=${this.type}&adult=${body?.travellers?.adults}&child=${body?.travellers?.children}&infant=${body?.travellers?.infants}&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
+      window.location.href = `https://book.sakinatours.com/Flight/search?dep1=${body.countryFrom}&ret1=${body.countryTo}&dtt1=${body.dateFrom}&dtt2=${body.dateTo}&cl1=Y&triptype=${this.type}&adult=${body?.travellers?.adults}&child=${body?.travellers?.children}&infant=${body?.travellers?.infants}&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
     } else if (body.type === 3) {
     }
   }

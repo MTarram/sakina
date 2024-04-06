@@ -214,4 +214,24 @@
   .p-dropdown .p-dropdown-panel {
     min-width: 14rem;
   }
+  /* Global styles.css file */
+  /* Target the input field inside the PrimeNG calendar component */
+  .p-calendar .p-inputtext::placeholder {
+    color: black; /* Your desired placeholder color */
+  }
+
+  /* For Internet Explorer */
+  .p-calendar .p-inputtext:-ms-input-placeholder {
+    color: black; /* Your desired placeholder color */
+  }
+
+  /* For Microsoft Edge */
+  .p-calendar .p-inputtext::-ms-input-placeholder {
+    color: black; /* Your desired placeholder color */
+  }
+
+  .pi-angle-down:before {
+    content: "\e930";
+    color: black;
+  }
 }
