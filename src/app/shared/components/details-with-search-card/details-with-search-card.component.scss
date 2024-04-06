@@ -103,6 +103,9 @@
 
 ::ng-deep {
   .p-overlaypanel .p-overlaypanel-content {
+    ul {
+      padding-left: 0;
+    }
     .travellerForm {
       display: flex;
       flex-direction: column;
