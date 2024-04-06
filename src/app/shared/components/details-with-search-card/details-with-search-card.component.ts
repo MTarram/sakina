@@ -124,51 +124,19 @@ export class DetailsWithSearchCardComponent implements OnInit {
       this.travellerForm.get('infants')?.value;
   }
 
-  opencitFromInput(cityFrom: OverlayPanel) {
-    cityFrom.show(event);
-
-    // Wait for the DOM to be updated
-    setTimeout(() => {
-      const dropdownElement: HTMLElement =
-        this.citFromInput.el.nativeElement.querySelector('.p-dropdown-label');
-      if (dropdownElement) {
-        dropdownElement.click();
-      }
-    }, 100); // Adjust delay as needed
+  openCalendar() {
+    const calendarElement: HTMLElement =
+      this.dateFromCalendar?.inputfieldViewChild?.nativeElement;
+    if (calendarElement) {
+      calendarElement.click();
+    }
   }
 
-  opencit2FromInput(cityTo: OverlayPanel) {
-    cityTo.show(event);
-
-    // Wait for the DOM to be updated
-    setTimeout(() => {
-      const dropdownElement: HTMLElement =
-        this.citToInput.el.nativeElement.querySelector('.p-dropdown-label');
-      if (dropdownElement) {
-        dropdownElement.click();
-      }
-    }, 100); // Adjust delay as needed
-  }
-
-  openCalendar(calendarFrom: OverlayPanel) {
-    calendarFrom.show(event);
-    setTimeout(() => {
-      const calendarElement: HTMLElement =
-        this.dateFromCalendar?.inputfieldViewChild?.nativeElement;
-      if (calendarElement) {
-        calendarElement.click();
-      }
-    }, 100);
-  }
-
-  openCalendar2(dateTo: OverlayPanel) {
-    dateTo.show(event);
-    setTimeout(() => {
-      const calendarElement: HTMLElement =
-        this.dateToCalendar?.inputfieldViewChild?.nativeElement;
-      if (calendarElement) {
-        calendarElement.click();
-      }
-    }, 100);
+  openCalendar2() {
+    const calendarElement: HTMLElement =
+      this.dateToCalendar?.inputfieldViewChild?.nativeElement;
+    if (calendarElement) {
+      calendarElement.click();
+    }
   }
 }

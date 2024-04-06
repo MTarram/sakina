@@ -1,14 +1,18 @@
 <ng-container *ngIf="type !== 3">
   <div class="tabPanel">
     <div class="cityFrom">
-      <small class="d-flex gap-2">
-        <span>{{ tab?.cityFrom?.header }}</span>
-        <img
-          (click)="opencitFromInput(cityFrom)"
-          src="assets/arrow-down.svg"
-          alt="Arrow Down"
-        />
-      </small>
+      <p-dropdown
+        [options]="countriesFrom"
+        (onFilter)="onInputFromChange($event)"
+        (onChange)="onCountryFromChange($event)"
+        [(ngModel)]="selectedCountryFrom"
+        optionLabel="name"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="From"
+        #citFromInput
+      >
+      </p-dropdown>
       <h3 *ngIf="selectedCountryFrom?.name">{{ selectedCountryFrom?.name }}</h3>
       <h6 *ngIf="selectedCountryFrom?.iataCode">
         {{
@@ -21,14 +25,18 @@
       </h6>
     </div>
     <div class="cityTo">
-      <small class="d-flex gap-2">
-        <span>{{ tab?.cityTo?.header }}</span>
-        <img
-          (click)="opencit2FromInput(cityTo)"
-          src="assets/arrow-down.svg"
-          alt="Arrow Down"
-        />
-      </small>
+      <p-dropdown
+        [options]="countriesTo"
+        (onFilter)="onInputToChange($event)"
+        (onChange)="onCountryToChange($event)"
+        [(ngModel)]="selectedCountryTo"
+        optionLabel="name"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="To"
+        #citToInput
+      >
+      </p-dropdown>
       <h3 *ngIf="selectedCountryTo?.name">{{ selectedCountryTo?.name }}</h3>
       <h6 *ngIf="selectedCountryTo?.iataCode">
         {{
@@ -41,38 +49,37 @@
       </h6>
     </div>
     <div class="dateFrom">
-      <small class="d-flex gap-2">
-        <span>{{ tab?.dateFrom?.header }}</span>
-        <img
-          (click)="openCalendar(dateFrom)"
-          src="assets/arrow-down.svg"
-          alt="Arrow Down"
-        />
-      </small>
-      <h6 *ngIf="dateCalendarFrom">
-        {{ dateCalendarFrom | date : "dd-MMM-yyyy" }}
-      </h6>
+      <p-calendar
+        [(ngModel)]="dateCalendarFrom"
+        [appendTo]="'body'"
+        [minDate]="dateTime"
+        placeholder="Departure"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        inputId="templatedisplay"
+      >
+        <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+          <i class="pi pi-angle-down pointer-events-none"></i>
+        </ng-template>
+      </p-calendar>
     </div>
     <div class="dateTo">
-      <small class="d-flex gap-2">
-        <span [ngClass]="type !== 2 && type !== 3 ? 'date-disabled' : ''">{{
-          tab?.dateTo?.header
-        }}</span>
-        <img
-          *ngIf="type === 2 || type === 3"
-          (click)="type === 2 || type === 3 ? openCalendar2(dateTo) : null"
-          src="assets/arrow-down.svg"
-          alt="Arrow Down"
-        />
-      </small>
-      <h6
-        [ngClass]="type !== 2 && type !== 3 ? 'date-disabled' : ''"
-        *ngIf="dateCalendarTo"
+      <p-calendar
+        [(ngModel)]="dateCalendarTo"
+        [appendTo]="'body'"
+        [disabled]="type !== 2"
+        [minDate]="dateCalendarFrom ? dateCalendarFrom : dateTime"
+        placeholder="Return"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        inputId="templatedisplay"
+        #dateFromCalendar
       >
-        {{ dateCalendarTo | date : "dd-MMM-yyyy" }}
-      </h6>
+        <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+          <i class="pi pi-angle-down pointer-events-none"></i>
+        </ng-template>
+      </p-calendar>
     </div>
-
     <div class="travellers">
       <small class="d-flex gap-2" style="width: 25rem !important">
         <span>{{ tab?.travellers?.header }}</span>
@@ -102,68 +109,6 @@
       </a>
     </div>
   </div>
-
-  <!-- Overlay Panel for selecting destination country -->
-  <p-overlayPanel #cityFrom>
-    <ng-template pTemplate="content">
-      <p-dropdown
-        [options]="countriesFrom"
-        (onFilter)="onInputFromChange($event)"
-        (onChange)="onCountryFromChange($event)"
-        [(ngModel)]="selectedCountryFrom"
-        optionLabel="name"
-        [filter]="true"
-        [showClear]="true"
-        placeholder="Select a Country"
-        #citFromInput
-      >
-      </p-dropdown>
-    </ng-template>
-  </p-overlayPanel>
-  <p-overlayPanel #cityTo>
-    <ng-template pTemplate="content">
-      <p-dropdown
-        [options]="countriesTo"
-        (onFilter)="onInputToChange($event)"
-        (onChange)="onCountryToChange($event)"
-        [(ngModel)]="selectedCountryTo"
-        optionLabel="name"
-        [filter]="true"
-        [showClear]="true"
-        placeholder="Select a Country"
-        #citToInput
-      >
-      </p-dropdown>
-    </ng-template>
-  </p-overlayPanel>
-
-  <!-- Overlay Panel for selecting Dates -->
-  <p-overlayPanel #dateFrom>
-    <ng-template pTemplate="content">
-      <p-calendar
-        [(ngModel)]="dateCalendarFrom"
-        [iconDisplay]="'input'"
-        [showIcon]="true"
-        [appendTo]="'body'"
-        [minDate]="dateTime"
-        #dateFromCalendar
-      ></p-calendar>
-    </ng-template>
-  </p-overlayPanel>
-  <p-overlayPanel #dateTo>
-    <ng-template pTemplate="content">
-      <p-calendar
-        [(ngModel)]="dateCalendarTo"
-        [iconDisplay]="'input'"
-        [showIcon]="true"
-        [appendTo]="'body'"
-        [disabled]="type !== 2"
-        [minDate]="dateCalendarFrom ? dateCalendarFrom : dateTime"
-        #dateToCalendar
-      ></p-calendar>
-    </ng-template>
-  </p-overlayPanel>
-
   <!-- Overlay Panel for selecting number of travellers -->
   <p-overlayPanel #travellersOp [appendTo]="'body'">
     <ng-template pTemplate="content">

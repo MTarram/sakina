@@ -12,7 +12,8 @@
     border-right: 1px solid #d8d8d8;
     color: #1c1b1f;
     flex: 1 1 auto; // Allow the items to grow but also have a minimum size
-    max-width: 200px; // Limit the maximum width of each tab item
+    max-width: 210px;
+    justify-content: center;
   }
 
   & > *:last-child {
@@ -175,5 +176,42 @@
         }
       }
     }
+  }
+}
+
+::ng-deep {
+  .p-dropdown {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    border: none;
+  }
+  .p-dropdown .p-dropdown-label.p-placeholder {
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .p-dropdown .p-dropdown-trigger {
+    background: transparent;
+    color: black;
+    width: 3rem;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+    padding-right: 0 !important;
+  }
+  .p-calendar .p-inputtext {
+    flex: 1 1 auto;
+    width: 1%;
+    border: none;
+    width: 8rem !important;
+    cursor: pointer;
+  }
+  .p-dropdown .p-dropdown-panel {
+    min-width: 14rem;
   }
 }
