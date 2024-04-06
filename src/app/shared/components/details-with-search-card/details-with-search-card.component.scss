@@ -5,35 +5,97 @@
   justify-content: center; // Center the tabs on the page
 
   & > * {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.25rem 2.5rem; // Padding around each tab item
-    border-right: 1px solid #d8d8d8;
-    color: #1c1b1f;
-    flex: 1 1 auto; // Allow the items to grow but also have a minimum size
-    max-width: 210px;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    padding: 1.25rem 2.5rem !important; // Padding around each tab item
+    border-right: 1px solid #d8d8d8 !important;
+    color: #1c1b1f !important;
+    flex: 1 1 auto !important; // Allow the items to grow but also have a minimum size
+    max-width: 210px !important;
+    justify-content: center !important;
   }
+  .add {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    padding: 1.25rem 2.5rem !important; // Padding around each tab item
+    border-right: 1px solid #d8d8d8 !important;
+    color: #1c1b1f !important;
+    flex: 1 1 auto !important; // Allow the items to grow but also have a minimum size
+    max-width: 100px !important;
+    justify-content: center !important;
+  }
+  &.array-tab {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: "Mukta", sans-serif;
+    justify-content: start !important; // Center the tabs on the page
+    & > * {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0 !important;
+      padding: 1.25rem 2.5rem !important;
+      border-right: 0 !important;
 
-  & > *:last-child {
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    padding: 1.8rem;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-    background: #af8549;
-    border-right: none;
-    max-width: 100px; // Max width for the search icon area
-    &:hover {
-      // filter: brightness(0.7);
-      /* Hover state */
-      background-color: #e6ac00; /* A darker shade for hover */
-      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* A more pronounced shadow for hover */
+      color: #1c1b1f !important;
+      flex: 0 !important; // Allow the items to grow but also have a minimum size
+      max-width: 210px !important;
+      justify-content: start !important;
+    }
+    .add {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      padding: 1.25rem 2.5rem !important; // Padding around each tab item
+      border-right: 0 !important;
+      color: #1c1b1f !important;
+      flex: 1 1 auto !important; // Allow the items to grow but also have a minimum size
+      max-width: 150px !important;
+      justify-content: start !important;
+    }
+    .remove {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      padding: 1.25rem 2.5rem !important; // Padding around each tab item
+      border-right: 0 !important;
+      color: #1c1b1f !important;
+      flex: 1 1 auto !important; // Allow the items to grow but also have a minimum size
+      max-width: 150px !important;
+      justify-content: start !important;
     }
   }
-
+  .remove {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    padding: 1.25rem 2.5rem !important; // Padding around each tab item
+    border-right: 1px solid #d8d8d8 !important;
+    color: #1c1b1f !important;
+    flex: 1 1 auto !important; // Allow the items to grow but also have a minimum size
+    max-width: 100px !important;
+    justify-content: center !important;
+  }
+  &.default-tab {
+    & > *:last-child {
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      padding: 1.8rem;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+      background: #af8549;
+      border-right: none;
+      max-width: 100px; // Max width for the search icon area
+      &:hover {
+        // filter: brightness(0.7);
+        /* Hover state */
+        background-color: #e6ac00; /* A darker shade for hover */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* A more pronounced shadow for hover */
+      }
+    }
+  }
   @media (max-width: 768px) {
     & > * {
       padding: 0.8rem; // Reduced padding for smaller screens
@@ -187,6 +249,7 @@
     -webkit-user-select: none;
     user-select: none;
     border: none;
+    font-size: 24px;
   }
   .p-dropdown .p-dropdown-label.p-placeholder {
     color: black;
@@ -204,6 +267,10 @@
   .p-dropdown.p-dropdown-clearable .p-dropdown-label {
     padding-right: 0 !important;
   }
+  .p-calendar {
+    width: 10rem;
+    max-width: 10rem;
+  }
   .p-calendar .p-inputtext {
     flex: 1 1 auto;
     width: 1%;
@@ -211,8 +278,35 @@
     width: 8rem !important;
     cursor: pointer;
   }
+  .have-value {
+    .p-calendar .p-inputtext {
+      flex: 1 1 auto;
+      width: 1%;
+      border: none;
+      width: 8rem !important;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
   .p-dropdown .p-dropdown-panel {
     min-width: 14rem;
+  }
+  .no-value {
+    .p-calendar .p-inputtext {
+      cursor: not-allowed; /* Shows a stop icon on hover */
+    }
+  }
+
+  .data-found {
+    .p-dropdown {
+      width: 10rem;
+    }
+    .p-dropdown.p-dropdown-clearable .p-dropdown-label {
+      padding-right: 0 !important;
+      font-weight: 500;
+      color: black;
+    }
   }
   /* Global styles.css file */
   /* Target the input field inside the PrimeNG calendar component */
