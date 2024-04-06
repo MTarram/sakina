@@ -1,139 +1,505 @@
-<div class="tabPanel">
-  <div class="cityFrom">
-    <small class="d-flex gap-2">
-      <span>{{ tab.cityFrom.header }}</span>
-      <img
-        (click)="op.toggle($event)"
-        src="assets/arrow-down.svg"
-        alt="Arrow Down"
-      />
-    </small>
-    <h3>{{ tab.cityFrom.details }}</h3>
-    <h6>{{ tab.cityFrom.subDetails }}</h6>
-  </div>
-  <div class="cityTo">
-    <small class="d-flex gap-2">
-      <span>{{ tab.cityTo.header }}</span>
-      <img
-        (click)="op.toggle($event)"
-        src="assets/arrow-down.svg"
-        alt="Arrow Down"
-      />
-    </small>
-    <h3>{{ tab.cityTo.details }}</h3>
-    <h6>{{ tab.cityTo.subDetails }}</h6>
-  </div>
-  <div class="dateFrom">
-    <small class="d-flex gap-2">
-      <span>{{ tab.dateFrom.header }}</span>
-      <img
-        (click)="op.toggle($event)"
-        src="assets/arrow-down.svg"
-        alt="Arrow Down"
-      />
-    </small>
-    <h3>{{ tab.dateFrom.details }}</h3>
-    <h6>{{ tab.dateFrom.subDetails }}</h6>
-  </div>
-  <div class="dateTo">
-    <small class="d-flex gap-2">
-      <span>{{ tab.dateTo.header }}</span>
-      <img
-        (click)="op.toggle($event)"
-        src="assets/arrow-down.svg"
-        alt="Arrow Down"
-      />
-    </small>
-    <h3>{{ tab.dateTo.details }}</h3>
-    <h6>{{ tab.dateTo.subDetails }}</h6>
-  </div>
-  <div class="travellers">
-    <small class="d-flex gap-2">
-      <span>{{ tab.travellers.header }}</span>
-      <img
-        (click)="travellersOp.toggle($event)"
-        src="assets/arrow-down.svg"
-        alt="Arrow Down"
-      />
-    </small>
-    <h3>{{ tab.travellers.details }}</h3>
-    <h6>{{ tab.travellers.subDetails }}</h6>
-  </div>
-  <div class="search">
-    <img (click)="op.toggle($event)" src="assets/search.svg" alt="Arrow Down" />
-  </div>
-</div>
+<ng-container *ngIf="type !== 3">
+  <div class="tabPanel">
+    <div class="cityFrom">
+      <small class="d-flex gap-2">
+        <span>{{ tab?.cityFrom?.header }}</span>
+        <img
+          (click)="opencitFromInput(cityFrom)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3 *ngIf="selectedCountryFrom?.name">{{ selectedCountryFrom?.name }}</h3>
+      <h6 *ngIf="selectedCountryFrom?.iataCode">
+        {{
+          selectedCountryFrom?.iataCode +
+            ", " +
+            selectedCountryFrom?.address?.cityName +
+            " " +
+            selectedCountryFrom?.address?.countryName
+        }}
+      </h6>
+    </div>
+    <div class="cityTo">
+      <small class="d-flex gap-2">
+        <span>{{ tab?.cityTo?.header }}</span>
+        <img
+          (click)="opencit2FromInput(cityTo)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3 *ngIf="selectedCountryTo?.name">{{ selectedCountryTo?.name }}</h3>
+      <h6 *ngIf="selectedCountryTo?.iataCode">
+        {{
+          selectedCountryTo?.iataCode +
+            ", " +
+            selectedCountryTo?.address?.cityName +
+            " " +
+            selectedCountryTo?.address?.countryName
+        }}
+      </h6>
+    </div>
+    <div class="dateFrom">
+      <small class="d-flex gap-2">
+        <span>{{ tab?.dateFrom?.header }}</span>
+        <img
+          (click)="openCalendar(dateFrom)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h6 *ngIf="dateCalendarFrom">
+        {{ dateCalendarFrom | date : "dd-MMM-yyyy" }}
+      </h6>
+    </div>
+    <div class="dateTo">
+      <small class="d-flex gap-2">
+        <span [ngClass]="type !== 2 && type !== 3 ? 'date-disabled' : ''">{{
+          tab?.dateTo?.header
+        }}</span>
+        <img
+          *ngIf="type === 2 || type === 3"
+          (click)="type === 2 || type === 3 ? openCalendar2(dateTo) : null"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h6
+        [ngClass]="type !== 2 && type !== 3 ? 'date-disabled' : ''"
+        *ngIf="dateCalendarTo"
+      >
+        {{ dateCalendarTo | date : "dd-MMM-yyyy" }}
+      </h6>
+    </div>
 
-<p-overlayPanel #travellersOp>
-  <ng-template pTemplate="content">
-    <form
-      class="travellerForm"
-      [formGroup]="travellerForm"
-      (ngSubmit)="onSubmit()"
-    >
-      <div class="control">
-        <div class="label">
-          <span>Adults</span>
-          <small>12+</small>
-        </div>
-        <p-inputNumber
-          formControlName="adults"
-          [showButtons]="true"
-          [step]="1"
-          [min]="0"
-          buttonLayout="horizontal"
-          incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus"
-        ></p-inputNumber>
-      </div>
-      <div class="control">
-        <div class="label">
-          <span>Children</span>
-          <small> 2-12</small>
-        </div>
-        <p-inputNumber
-          formControlName="children"
-          [showButtons]="true"
-          [step]="1"
-          [min]="0"
-          buttonLayout="horizontal"
-          incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus"
-        ></p-inputNumber>
-      </div>
-      <div class="control">
-        <div class="label">
-          <span>Infants</span>
-          <small>2-</small>
-        </div>
-        <p-inputNumber
-          formControlName="infants"
-          [showButtons]="true"
-          [step]="1"
-          [min]="0"
-          buttonLayout="horizontal"
-          incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus"
-        ></p-inputNumber>
-      </div>
-      <div class="control">
-        <div class="label">
-          <span>Class</span>
-        </div>
-        <p-dropdown
-          formControlName="selectedCity"
-          [options]="classes"
-          optionLabel="name"
-          placeholder="Select a Class"
-        ></p-dropdown>
-      </div>
-      <button type="submit" [disabled]="travellerForm.invalid">Apply</button>
-    </form>
-  </ng-template>
-</p-overlayPanel>
+    <div class="travellers">
+      <small class="d-flex gap-2" style="width: 25rem !important">
+        <span>{{ tab?.travellers?.header }}</span>
+        <img
+          (click)="travellersOp.toggle($event)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3
+        style="width: 25rem !important"
+        *ngIf="
+          travellerForm.get('adults')?.value ||
+          travellerForm.get('children')?.value ||
+          travellerForm.get('infants')?.value
+        "
+      >
+        {{ numberOfTravellers ? numberOfTravellers + " Travellers" : 0 }}
+      </h3>
+      <h6 *ngIf="travellerForm.get('class')?.value">
+        {{ travellerForm.get("class")?.value.name }}
+      </h6>
+    </div>
+    <div class="search">
+      <a (click)="onSubmit()">
+        <img (click)="onSubmit()" src="assets/search.svg" alt="Arrow Down" />
+      </a>
+    </div>
+  </div>
 
-<p-overlayPanel #op>
-  <ng-template pTemplate="content">
-    <small>content here</small>
-  </ng-template>
-</p-overlayPanel>
+  <!-- Overlay Panel for selecting destination country -->
+  <p-overlayPanel #cityFrom>
+    <ng-template pTemplate="content">
+      <p-dropdown
+        [options]="countriesFrom"
+        (onFilter)="onInputFromChange($event)"
+        (onChange)="onCountryFromChange($event)"
+        [(ngModel)]="selectedCountryFrom"
+        optionLabel="name"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="Select a Country"
+        #citFromInput
+      >
+      </p-dropdown>
+    </ng-template>
+  </p-overlayPanel>
+  <p-overlayPanel #cityTo>
+    <ng-template pTemplate="content">
+      <p-dropdown
+        [options]="countriesTo"
+        (onFilter)="onInputToChange($event)"
+        (onChange)="onCountryToChange($event)"
+        [(ngModel)]="selectedCountryTo"
+        optionLabel="name"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="Select a Country"
+        #citToInput
+      >
+      </p-dropdown>
+    </ng-template>
+  </p-overlayPanel>
+
+  <!-- Overlay Panel for selecting Dates -->
+  <p-overlayPanel #dateFrom>
+    <ng-template pTemplate="content">
+      <p-calendar
+        [(ngModel)]="dateCalendarFrom"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        [appendTo]="'body'"
+        [minDate]="dateTime"
+        #dateFromCalendar
+      ></p-calendar>
+    </ng-template>
+  </p-overlayPanel>
+  <p-overlayPanel #dateTo>
+    <ng-template pTemplate="content">
+      <p-calendar
+        [(ngModel)]="dateCalendarTo"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        [appendTo]="'body'"
+        [disabled]="type !== 2"
+        [minDate]="dateCalendarFrom ? dateCalendarFrom : dateTime"
+        #dateToCalendar
+      ></p-calendar>
+    </ng-template>
+  </p-overlayPanel>
+
+  <!-- Overlay Panel for selecting number of travellers -->
+  <p-overlayPanel #travellersOp [appendTo]="'body'">
+    <ng-template pTemplate="content">
+      <form class="travellerForm" [formGroup]="travellerForm">
+        <div class="control">
+          <div class="label">
+            <span>Adults</span>
+            <small>12+</small>
+          </div>
+          <p-inputNumber
+            formControlName="adults"
+            [showButtons]="true"
+            [step]="1"
+            [min]="0"
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            (ngModelChange)="onCounterChange($event)"
+          ></p-inputNumber>
+        </div>
+        <div class="control">
+          <div class="label">
+            <span>Children</span>
+            <small> 2-12</small>
+          </div>
+          <p-inputNumber
+            formControlName="children"
+            [showButtons]="true"
+            [step]="1"
+            [min]="0"
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            (ngModelChange)="onCounterChange($event)"
+          ></p-inputNumber>
+        </div>
+        <div class="control">
+          <div class="label">
+            <span>Infants</span>
+            <small>2-</small>
+          </div>
+          <p-inputNumber
+            formControlName="infants"
+            [showButtons]="true"
+            [step]="1"
+            [min]="0"
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            (ngModelChange)="onCounterChange($event)"
+          ></p-inputNumber>
+        </div>
+        <div class="control">
+          <div class="label">
+            <span>Class</span>
+          </div>
+          <p-dropdown
+            formControlName="class"
+            [options]="classes"
+            optionLabel="name"
+            placeholder="Select a Class"
+          ></p-dropdown>
+        </div>
+        <button
+          (click)="onApplyClick()"
+          (click)="this.travellersOp.toggle($event)"
+          type="button"
+          [disabled]="travellerForm.invalid"
+          class="apply-button"
+        >
+          Apply
+        </button>
+      </form>
+    </ng-template>
+  </p-overlayPanel>
+</ng-container>
+
+<ng-container *ngIf="type === 3">
+  <div class="tabPanel">
+    <div class="cityFrom">
+      <small class="d-flex gap-2">
+        <span>{{ tab?.cityFrom?.header }}</span>
+        <img
+          (click)="cityFrom.toggle($event)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3 *ngIf="selectedCountryFrom?.name">{{ selectedCountryFrom?.name }}</h3>
+      <h6 *ngIf="selectedCountryFrom?.iataCode">
+        {{
+          selectedCountryFrom?.iataCode +
+            ", " +
+            selectedCountryFrom?.address?.cityName +
+            " " +
+            selectedCountryFrom?.address?.countryName
+        }}
+      </h6>
+    </div>
+    <div class="cityTo">
+      <small class="d-flex gap-2">
+        <span>{{ tab?.cityTo?.header }}</span>
+        <img
+          (click)="cityTo.toggle($event)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3 *ngIf="selectedCountryTo?.name">{{ selectedCountryTo?.name }}</h3>
+      <h6 *ngIf="selectedCountryTo?.iataCode">
+        {{
+          selectedCountryTo?.iataCode +
+            ", " +
+            selectedCountryTo?.address?.cityName +
+            " " +
+            selectedCountryTo?.address?.countryName
+        }}
+      </h6>
+    </div>
+    <div class="dateFrom">
+      <small class="d-flex gap-2">
+        <span>{{ tab?.dateFrom?.header }}</span>
+        <img
+          (click)="dateFrom.toggle($event)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3 *ngIf="dateCalendarFrom">
+        {{ dateCalendarFrom | date : "dd-MMM-yyyy" }}
+      </h3>
+    </div>
+    <div class="dateTo">
+      <small class="d-flex gap-2">
+        <span [ngClass]="type !== 2 && type !== 3 ? 'date-disabled' : ''">{{
+          tab?.dateTo?.header
+        }}</span>
+        <img
+          *ngIf="type === 2 || type === 3"
+          (click)="type === 2 || type === 3 ? dateTo.toggle($event) : null"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3
+        [ngClass]="type !== 2 && type !== 3 ? 'date-disabled' : ''"
+        *ngIf="dateCalendarTo"
+      >
+        {{ dateCalendarTo | date : "dd-MMM-yyyy" }}
+      </h3>
+    </div>
+
+    <div class="travellers">
+      <small class="d-flex gap-2" style="width: 25rem !important">
+        <span>{{ tab?.travellers?.header }}</span>
+        <img
+          (click)="travellersOp.toggle($event)"
+          src="assets/arrow-down.svg"
+          alt="Arrow Down"
+        />
+      </small>
+      <h3
+        style="width: 25rem !important"
+        *ngIf="
+          travellerForm.get('adults')?.value ||
+          travellerForm.get('children')?.value ||
+          travellerForm.get('infants')?.value
+        "
+      >
+        {{ numberOfTravellers ? numberOfTravellers + " Travellers" : 0 }}
+      </h3>
+      <h6 *ngIf="travellerForm.get('class')?.value">
+        {{ "Class " + travellerForm.get("class")?.value }}
+      </h6>
+    </div>
+    <div class="search">
+      <button
+        (click)="onApplyClick()"
+        (click)="this.travellersOp.toggle($event)"
+        type="button"
+        [disabled]="travellerForm.invalid"
+        class="apply-button"
+      >
+        Add
+      </button>
+    </div>
+    <div class="search">
+      <button
+        (click)="onApplyClick()"
+        (click)="this.travellersOp.toggle($event)"
+        type="button"
+        [disabled]="travellerForm.invalid"
+        class="apply-button"
+      >
+        Remove
+      </button>
+    </div>
+    <div class="search">
+      <a (click)="onSubmit()">
+        <img (click)="onSubmit()" src="assets/search.svg" alt="Arrow Down" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Overlay Panel for selecting destination country -->
+  <p-overlayPanel #cityFrom>
+    <ng-template pTemplate="content">
+      <p-dropdown
+        [options]="countriesFrom"
+        (onFilter)="onInputFromChange($event)"
+        (onChange)="onCountryFromChange($event)"
+        [(ngModel)]="selectedCountryFrom"
+        optionLabel="name"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="Select a Country"
+        #dropdown
+      >
+      </p-dropdown>
+    </ng-template>
+  </p-overlayPanel>
+  <p-overlayPanel #cityTo>
+    <ng-template pTemplate="content">
+      <p-dropdown
+        [options]="countriesTo"
+        (onFilter)="onInputToChange($event)"
+        (onChange)="onCountryToChange($event)"
+        [(ngModel)]="selectedCountryTo"
+        optionLabel="name"
+        [filter]="true"
+        [showClear]="true"
+        placeholder="Select a Country"
+      >
+      </p-dropdown>
+    </ng-template>
+  </p-overlayPanel>
+
+  <!-- Overlay Panel for selecting Dates -->
+  <p-overlayPanel #dateFrom>
+    <ng-template pTemplate="content">
+      <p-calendar
+        [(ngModel)]="dateCalendarFrom"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        [appendTo]="'body'"
+        [minDate]="dateTime"
+      ></p-calendar>
+    </ng-template>
+  </p-overlayPanel>
+  <p-overlayPanel #dateTo>
+    <ng-template pTemplate="content">
+      <p-calendar
+        [(ngModel)]="dateCalendarTo"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        [appendTo]="'body'"
+        [disabled]="type !== 2"
+        [minDate]="dateCalendarFrom ? dateCalendarFrom : dateTime"
+      ></p-calendar>
+    </ng-template>
+  </p-overlayPanel>
+
+  <!-- Overlay Panel for selecting number of travellers -->
+  <p-overlayPanel #travellersOp [appendTo]="'body'">
+    <ng-template pTemplate="content">
+      <form class="travellerForm" [formGroup]="travellerForm">
+        <div class="control">
+          <div class="label">
+            <span>Adults</span>
+            <small>12+</small>
+          </div>
+          <p-inputNumber
+            formControlName="adults"
+            [showButtons]="true"
+            [step]="1"
+            [min]="0"
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            (ngModelChange)="onCounterChange($event)"
+          ></p-inputNumber>
+        </div>
+        <div class="control">
+          <div class="label">
+            <span>Children</span>
+            <small> 2-12</small>
+          </div>
+          <p-inputNumber
+            formControlName="children"
+            [showButtons]="true"
+            [step]="1"
+            [min]="0"
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            (ngModelChange)="onCounterChange($event)"
+          ></p-inputNumber>
+        </div>
+        <div class="control">
+          <div class="label">
+            <span>Infants</span>
+            <small>2-</small>
+          </div>
+          <p-inputNumber
+            formControlName="infants"
+            [showButtons]="true"
+            [step]="1"
+            [min]="0"
+            buttonLayout="horizontal"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+            (ngModelChange)="onCounterChange($event)"
+          ></p-inputNumber>
+        </div>
+        <div class="control">
+          <div class="label">
+            <span>Class</span>
+          </div>
+          <p-dropdown
+            formControlName="class"
+            [options]="classes"
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Select a Class"
+          ></p-dropdown>
+        </div>
+        <button
+          (click)="onApplyClick()"
+          (click)="this.travellersOp.toggle($event)"
+          type="button"
+          [disabled]="travellerForm.invalid"
+          class="apply-button"
+        >
+          Apply
+        </button>
+      </form>
+    </ng-template>
+  </p-overlayPanel>
+</ng-container>

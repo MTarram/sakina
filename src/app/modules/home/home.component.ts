@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,100 +8,91 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   tabs: {
+    id: number;
     title: string;
-    cityFrom: any;
-    cityTo: any;
-    dateFrom: any;
-    dateTo: any;
-    travellers: any;
+    cityFrom?: any;
+    cityTo?: any;
+    dateFrom?: any;
+    dateTo?: any;
+    travellers?: any;
   }[] = [];
+  valueChange: any;
 
   constructor() {
     this.tabs = [
       {
+        id: 1,
         title: 'One Way Journey',
         cityFrom: {
           header: 'From',
-          details: 'Cairo',
-          subDetails: 'CAI, Cairo Egypt',
         },
         cityTo: {
           header: 'To',
-          details: 'Madinah',
-          subDetails: 'MED, Mohammad Abdulaziz Saudi...',
         },
         dateFrom: {
           header: 'Departure',
-          details: '10 Mar 24',
-          subDetails: 'Sunday',
         },
         dateTo: {
           header: 'Return',
-          details: '30 Mar 24',
-          subDetails: 'Saturday',
         },
         travellers: {
           header: 'Travellers & Class',
-          details: '1 Traveller',
-          subDetails: 'First Class',
         },
       },
       {
+        id: 2,
         title: 'Two Way Journey',
         cityFrom: {
           header: 'From',
-          details: 'Cairo',
-          subDetails: 'CAI, Cairo Egypt',
         },
         cityTo: {
           header: 'To',
-          details: 'Madinah',
-          subDetails: 'MED, Mohammad Abdulaziz Saudi...',
         },
         dateFrom: {
           header: 'Departure',
-          details: '10 Mar 24',
-          subDetails: 'Sunday',
         },
         dateTo: {
           header: 'Return',
-          details: '30 Mar 24',
-          subDetails: 'Saturday',
         },
         travellers: {
           header: 'Travellers & Class',
-          details: '1 Traveller',
-          subDetails: 'First Class',
         },
       },
       {
+        id: 3,
         title: 'Mutli City Journey',
         cityFrom: {
           header: 'From',
-          details: 'Cairo',
-          subDetails: 'CAI, Cairo Egypt',
         },
         cityTo: {
           header: 'To',
-          details: 'Madinah',
-          subDetails: 'MED, Mohammad Abdulaziz Saudi...',
         },
         dateFrom: {
           header: 'Departure',
-          details: '10 Mar 24',
-          subDetails: 'Sunday',
         },
         dateTo: {
           header: 'Return',
-          details: '30 Mar 24',
-          subDetails: 'Saturday',
         },
         travellers: {
           header: 'Travellers & Class',
-          details: '1 Traveller',
-          subDetails: 'First Class',
         },
       },
     ];
+  }
+
+  formChange(body: any) {
+    console.log(body);
+
+    if (body.type === 1) {
+      window.location.href = `https://tunivision.amadeusonlinesuite.com/Flight/search?dep1=${body.countryFrom}&ret1=${body.countryTo}&dtt1=${body.dateFrom}&cl1=Y&triptype=${this.type}&adult=${body?.travellers?.adults}&child=${body?.travellers?.children}&infant=${body?.travellers?.infants}
+        .code}&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
+    } else if (body.type === 2) {
+      window.location.href = `https://tunivision.amadeusonlinesuite.com/Flight/search?dep1=${body.countryFrom}&ret1=${body.countryTo}&dtt1=${body.dateFrom}&dtt2=${body.dateTo}&cl1=Y&triptype=${this.type}&adult=${body?.travellers?.adults}&child=${body?.travellers?.children}&infant=${body?.travellers?.infants}&direct=false&baggage=false&umrah=false&key=OW&airlines=&ref=false&langcode=EN&curr=TND&ipc=false`;
+    } else if (body.type === 3) {
+    }
+  }
+  type: any = 1;
+  onTabChange(data: any) {
+    this.type = data.index + 1;
   }
 }

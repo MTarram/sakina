@@ -1,28 +1,53 @@
 .tabPanel {
   display: flex;
+  flex-wrap: wrap;
   font-family: "Mukta", sans-serif;
+  justify-content: center; // Center the tabs on the page
 
   & > * {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 1.25rem;
-    padding-inline: 2.5rem;
+    padding: 1.25rem 2.5rem; // Padding around each tab item
     border-right: 1px solid #d8d8d8;
     color: #1c1b1f;
+    flex: 1 1 auto; // Allow the items to grow but also have a minimum size
+    max-width: 200px; // Limit the maximum width of each tab item
   }
 
   & > *:last-child {
-    display: flex;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
     padding: 1.8rem;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     background: #af8549;
     border-right: none;
+    max-width: 100px; // Max width for the search icon area
     &:hover {
-      filter: brightness(0.7);
+      // filter: brightness(0.7);
+      /* Hover state */
+      background-color: #e6ac00; /* A darker shade for hover */
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* A more pronounced shadow for hover */
+    }
+  }
+
+  @media (max-width: 768px) {
+    & > * {
+      padding: 0.8rem; // Reduced padding for smaller screens
+      flex-basis: 100%; // Make each tab take full width on smaller screens
+      max-width: none; // Remove max-width to allow for full width
+      border-right: none;
+      border-bottom: 1px solid #d8d8d8;
+    }
+
+    & > *:last-child {
+      order: -1; // Place search at the top on small screens
+      flex-basis: auto; // Allow the search button to grow as needed
+      padding: 1.2rem; // Adjusted padding for the search button
+      border-top: 1px solid #d8d8d8; // Add a border to the top
+      border-radius: 0; // Reset border-radius
     }
   }
 
@@ -44,17 +69,55 @@
   }
 }
 
+.date-disabled {
+  color: #898989;
+}
+.apply-button {
+  background-color: #af8549; /* This is a common gold color, but you should pick the exact color from your design */
+  color: white; /* Assuming the text color is white */
+  border: none; /* No border for a flat button look */
+  border-radius: 25px; /* Adjust this value to match the curvature of your design */
+  padding: 12px 30px; /* Adjust padding to match the proportions of your design */
+  font-size: 16px; /* Adjust to match the design */
+  font-weight: bold; /* For bold text */
+  text-transform: uppercase; /* If the text is in uppercase */
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adjust to match the shadow in your design */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for interactive states */
+  /* Centering the button - assumes the button is a flex child */
+  display: block; /* Change to 'flex' if using Flexbox for centering */
+  margin: 0 auto; /* Centers the block */
+
+  /* Hover state */
+  &:hover {
+    background-color: #e6ac00; /* A darker shade for hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* A more pronounced shadow for hover */
+  }
+
+  /* Active (clicked) state */
+  &:active {
+    background-color: #ffa000; /* An even darker shade for active state */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* A flatter shadow for pressed effect */
+  }
+}
+
 ::ng-deep {
   .p-overlaypanel .p-overlaypanel-content {
     .travellerForm {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-
+      // Style for the dropdown, if you want to adjust its size as well
+      p-dropdown {
+        width: 100%; // Full width within the control container
+        .p-dropdown-label {
+          padding: 0.25rem; // Adjust padding for the label inside the dropdown
+        }
+      }
       .control {
         display: flex;
         justify-content: space-between;
-        gap: 4rem;
+        gap: 1rem; // Adjusted gap for responsiveness
         .label {
           display: flex;
           flex-direction: column;
@@ -69,16 +132,21 @@
           }
         }
 
-
         p-inputnumber,
         .p-inputnumber {
-        .p-inputnumber-buttons-horizontal .p-inputnumber-input {
-          border: none;
-        }
+          flex-wrap: wrap !important;
+          align-content: center !important;
+          .p-inputnumber-buttons-horizontal .p-inputnumber-input {
+            border: none;
+          }
+
+          .p-inputnumber.p-component .p-inputnumber-input {
+            text-align: center; // Center the text horizontally
+          }
 
           span {
             input {
-              max-width: 36px;
+              max-width: 36px; // Adjust input width for aesthetics
             }
             button {
               border-radius: 24px;
@@ -87,6 +155,20 @@
               border-color: black;
             }
           }
+        }
+
+        // Style for the plus and minus buttons
+        p-inputnumber .p-inputnumber-button {
+          width: 1.5rem; // Smaller width for buttons
+          height: 1.5rem; // Smaller height for buttons
+          line-height: 1.5rem; // Adjust line height to vertically center the icons
+        }
+
+        // Style adjustments for the input field
+        p-inputnumber .p-inputnumber-input {
+          padding: 0.25rem; // Reduce padding
+          font-size: 0.875rem; // Smaller font size if necessary
+          max-width: 2rem; // Set a max width for the input field
         }
       }
     }

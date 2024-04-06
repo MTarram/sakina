@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
 
 import { DetailsWithSearchCardComponent } from './components/details-with-search-card/details-with-search-card.component';
 
@@ -15,7 +16,10 @@ import { DetailsWithSearchCardComponent } from './components/details-with-search
     InputNumberModule,
     ReactiveFormsModule,
     DropdownModule,
+    FormsModule,
+    CalendarModule,
   ],
   exports: [DetailsWithSearchCardComponent],
+  providers: [DatePipe],
 })
 export class SharedModule {}

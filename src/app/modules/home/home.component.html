@@ -6,10 +6,12 @@
     </h1>
 
     <div class="journey-details">
-      <p-tabView>
+      <p-tabView (onChange)="onTabChange($event)">
         <p-tabPanel *ngFor="let tab of tabs" [header]="tab.title">
           <app-details-with-search-card
             [tab]="tab"
+            (valueChange)="formChange($event)"
+            [type]="type"
           ></app-details-with-search-card>
         </p-tabPanel>
       </p-tabView>
