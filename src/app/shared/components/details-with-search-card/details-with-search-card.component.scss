@@ -103,6 +103,8 @@
       max-width: none; // Remove max-width to allow for full width
       border-right: none;
       border-bottom: 1px solid #d8d8d8;
+      max-width: 250px;
+      display: flex;
     }
 
     & > *:last-child {
@@ -129,6 +131,27 @@
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 0;
+  }
+}
+@media (max-width: 768px) {
+  .tabPanel {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: "Mukta", sans-serif;
+    justify-content: center;
+    flex-direction: column !important;
+  }
+  .tabPanel > * {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    padding: 1.25rem 2.5rem !important;
+    border-right: 1px solid #d8d8d8 !important;
+    color: #1c1b1f !important;
+    flex: 1 1 auto !important;
+    max-width: 80% !important;
+    justify-content: center !important;
+    flex-direction: column !important;
   }
 }
 
