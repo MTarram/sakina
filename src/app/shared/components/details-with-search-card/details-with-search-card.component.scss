@@ -114,6 +114,11 @@
       border-top: 1px solid #d8d8d8; // Add a border to the top
       border-radius: 0; // Reset border-radius
     }
+    small {
+      font-size: 14px;
+      font-weight: 500;
+      max-width: fit-content;
+    }
   }
 
   small {
@@ -149,7 +154,7 @@
     border-right: 1px solid #d8d8d8 !important;
     color: #1c1b1f !important;
     flex: 1 1 auto !important;
-    max-width: 80% !important;
+    max-width: 100% !important;
     justify-content: center !important;
     flex-direction: column !important;
   }

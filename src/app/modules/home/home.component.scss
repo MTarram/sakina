@@ -15,13 +15,12 @@
       padding-top: 8rem;
 
       .content-title {
-        text-align: center;
         font-family: "Nanum Myeongjo", serif;
+        text-align: center;
       }
 
       .journey-details {
         margin-top: 3rem;
-
         .p-tabview-nav {
           margin-bottom: 0 !important;
           background-color: transparent;
@@ -50,6 +49,36 @@
           border-top-right-radius: 6px;
         }
       }
+      @media (max-width: 768px) {
+        .journey-details {
+          margin-top: 3rem;
+          width: 25rem !important;
+        }
+      }
+    }
+  }
+}
+
+/* CSS for p-tabView for mobile responsiveness */
+:host ::ng-deep {
+  .p-tabview .p-tabview-nav {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch; /* For momentum scrolling on iOS */
+  }
+
+  .p-tabview-nav li {
+    display: inline-block; /* Inline-block to allow for horizontal scroll */
+    flex: 0 0 auto; /* Do not grow or shrink */
+  }
+
+  /* Optional: reduce padding/margin for each tab on smaller screens */
+  @media (max-width: 768px) {
+    .p-tabview-nav li {
+      margin-right: 0.25rem;
     }
   }
 }
